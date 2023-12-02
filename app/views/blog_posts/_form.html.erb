@@ -1,0 +1,19 @@
+<%= form_with(model: blog_post, local: true) do |form| %>
+  <!-- Other fields... -->
+
+  <div class="field">
+    <%= form.label :thumbnail %>
+    <%= form.file_field :thumbnail %>
+    <% if blog_post.thumbnail.attached? %>
+      <img class="w-full h-64 object-cover" src="<%= url_for(blog_post.thumbnail) %>" alt="<%= blog_post.title %>">
+    <% else %>
+      <%= image_tag("default-thumbnail.jpg", class: "w-full h-64 object-cover") %>
+    <% end %>
+    <%= form.label :body %>
+    <%= form.rich_text_area :body %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
